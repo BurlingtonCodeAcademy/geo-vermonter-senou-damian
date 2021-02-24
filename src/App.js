@@ -1,5 +1,7 @@
 import './App.css';
 import { useState } from 'react'
+import ButtonNav from './components/Buttonnav'
+import ControlNav from './components/Controlnav'
 
 import Map from './components/Map'
 
@@ -10,6 +12,8 @@ function App() {
   return (
     <div>
       <Map center={center} />
+      <ButtonNav />
+      <ControlNav />
     </div>
   );
 }
