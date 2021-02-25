@@ -1,6 +1,7 @@
-function Quit() {
+function Quit(props) {
 
-    return <button>Quit</button>
+   
+    return <button onClick={props.quitToggle}>Quit</button>
 }
 
 export default Quit
