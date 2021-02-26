@@ -1,5 +1,5 @@
 function North (props) {
-    return <button>North</button>
+    return <button onClick={props.northClick}>North</button>
 }
 
 export default North

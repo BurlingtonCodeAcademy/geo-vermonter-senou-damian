@@ -1,5 +1,5 @@
 function West (props) {
-    return <button>West</button>
+    return <button onClick={props.westClick}>West</button>
 }
 
 export default West

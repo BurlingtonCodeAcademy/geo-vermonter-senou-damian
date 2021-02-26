@@ -1,5 +1,5 @@
 function South (props) {
-    return <button>South</button>
+    return <button onClick={props.southClick}>South</button>
 }
 
 export default South

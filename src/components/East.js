@@ -1,5 +1,5 @@
 function East (props) {
-    return <button>East</button>
+    return <button onClick={props.eastClick}>East</button>
 }
 
 export default East

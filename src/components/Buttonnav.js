@@ -1,15 +1,19 @@
 import North from './North'
 import South from './South'
 import East from './East'
-import West from './North'
+import West from './West'
 
-function ButtonNav() {
+// import { useState } from 'react'
+
+function ButtonNav(props) {
+
+
     return (
         <div>
-            <North />
-            <East />
-            <South />
-            <West />
+            <North northClick={props.buttClick} />
+            <East eastClick={props.buttClick}/>
+            <South southClick={props.buttClick}/>
+            <West westClick={props.buttClick}/>
         </div>
     )
 

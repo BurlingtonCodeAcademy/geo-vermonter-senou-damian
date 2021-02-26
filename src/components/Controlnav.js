@@ -6,11 +6,27 @@ import { useState } from "react";
 
 function ControlNav(props) {
   //Toggles Start and Quit/Guess buttons
-  const [isStarted, setStart] = useState(false);
 
-  function toggleStart(evt) {
+  const [marker, setMarker] = useState([43.88, -72.7317]);
+
+
+
+////Change view => useMap hook///
+function startClick (evt) {
+  startMarker()
+  toggleStart()
+}
+
+  function startMarker() {
+    setMarker([44.4761601, -73.212906]);
+  }
+
+  //Toggles Start and Quit/Guess buttons
+  const [isStarted, setStart] = useState(false);
+  function toggleStart() {
     setStart(!isStarted);
   }
+
   let startDiv;
   if (isStarted) {
     startDiv = (
@@ -20,10 +36,15 @@ function ControlNav(props) {
       </div>
     );
   } else {
-    startDiv = <Start startToggle={toggleStart}  />;
+    startDiv = <Start startClick={startClick} />;
   }
-  //<----- Return----->//
-  return <div>{startDiv}</div>;
+
+  return(
+     <div>
+       {startDiv}
+     </div>
+  )
+    
 }
 
 export default ControlNav;
