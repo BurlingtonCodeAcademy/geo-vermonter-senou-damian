@@ -17,7 +17,7 @@ const [mapManipZoom, setMapManipZoom] = useState(8)//16
 const [counter, setCounter] = useState(100)
 
 
-const [northMove, setNorthMove] = useState(mapManipCenter[0])
+const [northMove, setNorthMove] = useState()
 const [eastMove, setEastMove] = useState()
 const [southMove, setSouthMove] = useState()
 const [westMove, setWestMove] = useState()

@@ -14,26 +14,34 @@ function Map(props) {
   
   let innitLat
   let innitLong
- 
-  function randLat(){
-    innitLat = ((Math.random().toPrecision(8))*(-74 + 72 + 1) - 72)
-  }
+
   function randLong(){
-    innitLong = ((Math.random().toPrecision(8)*(46 - 43)+ 42))
+    innitLong = ((Math.random().toPrecision(8))*(-72 + 74 + 1) - 74)
+  }
+  function randLat(){
+    innitLat = ((Math.random().toPrecision(8)*(46 - 43)+ 42))
   }
   let stateLayer = L.geoJSON(borderData)
   randLat()
   randLong()
-  let innitLongLat = [innitLat, innitLong]
+  let innitLongLat = [innitLong, innitLat]
   let results = leafletPip.pointInLayer(innitLongLat, stateLayer)
 
+  while(results.length === 0){
   if(results.length === 0){
     console.log("Your point is out of bounds")
- 
- 
+    randLat()
+    randLong()
+    innitLongLat = [innitLong, innitLat]
+    results = leafletPip.pointInLayer(innitLongLat, stateLayer)
+    
+    console.log("REF: new result: " , results)
+    console.log("REF: new result: " , innitLongLat)
   } else if (results.length === 1 ){
     console.log("Your point is in bounds boiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
+    
   }
+}
     
 
   console.log("REF: innitLat: ", innitLat)
