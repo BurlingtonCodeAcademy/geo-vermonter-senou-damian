@@ -3,15 +3,13 @@ import South from './South'
 import East from './East'
 import West from './West'
 
-// import { useState } from 'react'
 
 function ButtonNav(props) {
 
-
     return (
         <div>
-            <North northClick={props.buttClick} />
-            <East eastClick={props.buttClick}/>
+            <North northClick={props.northClick} />
+            <East eastClick={props.eastClick}/>
             <South southClick={props.buttClick}/>
             <West westClick={props.buttClick}/>
         </div>

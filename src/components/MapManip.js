@@ -1,4 +1,4 @@
-  import { useMap } from 'react-leaflet'
+import { useMap } from 'react-leaflet'
 
 function MapManip ({ center, zoom }) {
         const map = useMap();

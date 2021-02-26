@@ -11,9 +11,7 @@ import Guess from "./components/Guess";
 
 function App(props) {
 
-const [marker, setMarker] = useState([43.88, -72.7317]);
-const [mapManipCenter, setMapManipCenter] = useState([43.88, -72.7317]) //[44.4761601, -73.212906]
-const [mapManipZoom, setMapManipZoom] = useState(8)//16
+const [initialize, setInitialize] = useState(false)
 const [counter, setCounter] = useState(100)
 
 
@@ -24,16 +22,10 @@ const [westMove, setWestMove] = useState()
 
 ////Change view => useMap hook///
 function startClick (evt) {
-  startMarker()
   toggleStart()
-  setMapManipCenter([44.4761601, -73.212906])
-  setMapManipZoom(16)
+  setInitialize(true)
 }
 
-//Set Initial Marker
-  function startMarker() {
-    setMarker([44.4761601, -73.212906]);
-  }
   //Toggles Start and Quit/Guess buttons
   const [isStarted, setStart] = useState(false);
   function toggleStart() {
@@ -51,6 +43,15 @@ function startClick (evt) {
     startDiv = <Start startClick={startClick} />;
   }
 
+
+function northClick(){
+  incrementCounter()
+
+}
+function eastClick(){
+  incrementCounter()
+
+}
 //Counter FX//
 function incrementCounter(evt) {
  setCounter(counter - 1)
@@ -64,15 +65,15 @@ function incrementCounter(evt) {
       <Info />
 
       <div id="map-container">
-        <Map marker={marker} center={mapManipCenter} zoom={mapManipZoom} />
+        <Map initialize={initialize}  />
       </div>
 
       <div id="button-container">
-      <ButtonNav buttClick={incrementCounter}/>
+      <ButtonNav northClick={northClick} eastClick={eastClick}/>
       {startDiv}
       </div>
 
-      <div id="counter  ">{counter}</div>
+      <div id="counter">{counter}</div>
 
     </div>
 
