@@ -1,32 +1,34 @@
 import "./App.css";
 import { useState } from "react";
-import ButtonNav from "./components/Buttonnav";
 import Info from "./components/Info";
 import Map from "./components/Map";
 
+import ButtonNav from "./components/Buttonnav";
 import Start from "./components/Start";
 import Quit from "./components/Quit";
 import Guess from "./components/Guess";
 
 
 function App(props) {
-
+//Press start => find drop point/zoom on map
 const [initialize, setInitialize] = useState(false)
+
+//Scorekeeper
 const [counter, setCounter] = useState(100)
 
-
+//Movement Buttons
 const [northMove, setNorthMove] = useState()
 const [eastMove, setEastMove] = useState()
 const [southMove, setSouthMove] = useState()
 const [westMove, setWestMove] = useState()
 
-////Change view => useMap hook///
+////Click start///
 function startClick (evt) {
   toggleStart()
   setInitialize(true)
 }
 
-  //Toggles Start and Quit/Guess buttons
+//Toggles Start and Quit/Guess buttons
   const [isStarted, setStart] = useState(false);
   function toggleStart() {
     setStart(!isStarted);
@@ -43,7 +45,7 @@ function startClick (evt) {
     startDiv = <Start startClick={startClick} />;
   }
 
-
+//Movement Functions
 function northClick(){
   incrementCounter()
 
@@ -52,7 +54,7 @@ function eastClick(){
   incrementCounter()
 
 }
-//Counter FX//
+//Scorekeeper F(x)//
 function incrementCounter(evt) {
  setCounter(counter - 1)
 }

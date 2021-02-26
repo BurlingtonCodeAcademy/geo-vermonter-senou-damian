@@ -17,18 +17,19 @@ function Map(props) {
   const [zoom, setZoom] = useState(8);
   const [mapManip, setMapManip] = useState([43.88, -72.7317]);
   const [stopInnit, setStopInnit] = useState(true)
-
+  //VT Border Outline
   let vtOutline = borderData.geometry.coordinates[0].map((coords) => [
     coords[1],
     coords[0],
   ]);
 
+  //Start Game => Find point within border
   if (props.initialize === true && stopInnit) {
     setInnitPoint();
      setStopInnit(false)
   }
 
-  //LeafPip checker//
+  //Find initial coordinates//
   function setInnitPoint() {
     let innitLat;
     let innitLong;
@@ -40,10 +41,10 @@ function Map(props) {
     function randLat() {
       innitLat = Math.random().toPrecision(8) * (46 - 43) + 42;
     }
-
+    //Border Data
     let stateLayer = L.geoJSON(borderData);
 
-    console.log("wazzzzaa");
+    console.log("We are finding the coords");
     randLat();
     randLong();
 
@@ -72,7 +73,9 @@ function Map(props) {
 
         innitLongLat = [innitLong, innitLat];
         innitLatLong = [innitLat, innitLong];
+        
         results = leafletPip.pointInLayer(innitLongLat, stateLayer);
+        
 
         if (results.length === 1) {
           setPoint();
