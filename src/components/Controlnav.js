@@ -9,14 +9,12 @@ function ControlNav(props) {
 
   const [marker, setMarker] = useState([43.88, -72.7317]);
 
-
-
-////Change view => useMap hook///
-function startClick (evt) {
-  startMarker()
-  toggleStart()
-}
-
+  ////Change view => useMap hook///
+  function startClick(evt) {
+    startMarker();
+    toggleStart();
+  }
+  //Starting marker puts us in downtown Burlington
   function startMarker() {
     setMarker([44.4761601, -73.212906]);
   }
@@ -26,7 +24,7 @@ function startClick (evt) {
   function toggleStart() {
     setStart(!isStarted);
   }
-
+  //checks if the game is started and if it has, prevents us from starting the game again
   let startDiv;
   if (isStarted) {
     startDiv = (
@@ -35,16 +33,12 @@ function startClick (evt) {
         <Guess />
       </div>
     );
+    //If the game hasn't started, this allows us to start it
   } else {
     startDiv = <Start startClick={startClick} />;
   }
 
-  return(
-     <div>
-       {startDiv}
-     </div>
-  )
-    
+  return <div>{startDiv}</div>;
 }
 
 export default ControlNav;

@@ -1,5 +1,6 @@
+//Button that confirms a guess, currently non-functional
 function Guess() {
-    return <button>Guess!</button>
+  return <button>Guess!</button>;
 }
 
-export default Guess
+export default Guess;

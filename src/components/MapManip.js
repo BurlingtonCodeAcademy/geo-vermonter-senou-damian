@@ -1,11 +1,11 @@
-import { useMap } from 'react-leaflet'
+//function to manipulate the map to center in on the random location and zoom in on it.
 
-function MapManip ({ center, zoom }) {
-        const map = useMap();
-        map.setView(center, zoom);
-        return null;
-  }
+import { useMap } from "react-leaflet";
 
-export default MapManip
-  
-  
+function MapManip({ center, zoom }) {
+  const map = useMap();
+  map.setView(center, zoom);
+  return null;
+}
+
+export default MapManip;

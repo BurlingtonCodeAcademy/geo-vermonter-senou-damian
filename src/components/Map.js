@@ -12,11 +12,16 @@ import { useState } from "react";
 
 import MapManip from "./MapManip";
 
+//Core map functionality
 function Map(props) {
+  //Sets the center coordinates for Vermont
   const [innitCenter, setInnitCenter] = useState([43.88, -72.7317]);
+  //Standard zoom level before the game starts, shows all of Vermont
   const [zoom, setZoom] = useState(8);
+  //Assigns the mapManip function to start at the same place as innitCenter
   const [mapManip, setMapManip] = useState([43.88, -72.7317]);
-  const [stopInnit, setStopInnit] = useState(true)
+  //Stops infinite loop after setting map point
+  const [stopInnit, setStopInnit] = useState(true);
   //VT Border Outline
   let vtOutline = borderData.geometry.coordinates[0].map((coords) => [
     coords[1],
@@ -26,24 +31,24 @@ function Map(props) {
   //Start Game => Find point within border
   if (props.initialize === true && stopInnit) {
     setInnitPoint();
-     setStopInnit(false)
+    setStopInnit(false);
   }
 
   //Find initial coordinates//
   function setInnitPoint() {
     let innitLat;
     let innitLong;
-
+    //RNG to assign a longitude that more often than not lands the pin inside Vermont.
     function randLong() {
       innitLong = Math.random().toPrecision(8) * (-72 + 74 + 1) - 74;
     }
-
+    //RNG to assign a latitude that more often than not lands the pin inside Vermont.
     function randLat() {
       innitLat = Math.random().toPrecision(8) * (46 - 43) + 42;
     }
     //Border Data
     let stateLayer = L.geoJSON(borderData);
-
+    //Log to check if the coordinates are being located.
     console.log("We are finding the coords");
     randLat();
     randLong();
@@ -55,6 +60,7 @@ function Map(props) {
     //Is point within boundaries//
     let results = leafletPip.pointInLayer(innitLongLat, stateLayer);
 
+    //when the map point is determined to be within the boundary of Vermont, function inserts map point at the lat and long
     function setPoint() {
       if (results.length === 1) {
         console.log("results = 1", results);
@@ -63,20 +69,20 @@ function Map(props) {
         setMapManip(innitLatLong);
       }
     }
-
+    //while the generated point is outside Vermont, it tosses the point out and tries again.
     while (results.length === 0) {
       if (results.length === 0) {
         console.log("inwhileloop");
 
         randLat();
         randLong();
-
+        //reassigns the combined array into a variable
         innitLongLat = [innitLong, innitLat];
         innitLatLong = [innitLat, innitLong];
-        
-        results = leafletPip.pointInLayer(innitLongLat, stateLayer);
-        
 
+        results = leafletPip.pointInLayer(innitLongLat, stateLayer);
+
+        //Sets a point when the coordinates are within desirable parameters
         if (results.length === 1) {
           setPoint();
         }
@@ -84,19 +90,10 @@ function Map(props) {
     }
   }
 
-  //Movement//
-
-  // if(props.northMove){
-  //   setMapManip(//current latitutde +.002)
-  // }
-
   return (
-    //REMEMBER => MAP COINTAINER IMMUTABLE
     <MapContainer
       center={innitCenter}
       zoom={zoom}
-      // dragging={false}
-      // scrollWheelZoom={false}
       doubleClickZoom={false}
       zoomControl={false}
       touchZoom={false}
